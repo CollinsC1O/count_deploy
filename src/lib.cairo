@@ -1,4 +1,4 @@
 pub mod counts;
 
 #[cfg(test)]
-mod tests { }
+mod tests {}
