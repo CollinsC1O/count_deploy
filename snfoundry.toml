@@ -11,7 +11,7 @@
 # show-explorer-links = true                               # Print links pointing to pages with transaction details in the chosen block explorer
 [sncast.sepolia]
 url = "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_7/Zoz3mZqyB4jFN_gts-ZNOueLEaOXs5WL"
-account = "sepolia"
+account = "count-deploy-account"
 
 #[sncast.sepolia]
 #url = "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_8/Zoz3mZqyB4jFN_gts-ZNOueLEaOXs5WL"
@@ -34,3 +34,23 @@ account = "sepolia"
 #sncast --profile sepolia call --contract-address 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 --function balanceOf --calldata YOUR_ACTUAL_ADDRESS
 #for Strk balance:
 #sncast --profile sepolia call --contract-address 0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d --function balanceOf --calldata YOUR_ACCOUNT_ADDRESS
+
+#To declare an account 
+#sncast --profile sepolia --account ACCOUNT-NAME declare --contract-name CONTRACT-NAME
+
+#TO deploy the account
+#sncast --profile sepolia --account ACCOUNT-NAME deploy --class-hash YOU-GIVEN-CLASS-HASH
+
+#contract-address after deployment:
+# 0x02e00fa947c36a31248acefc7f8896805e12e3217e0a55ec8e36edf8ada3f2f7
+
+# how to call a function from terminal, after deployment
+# sncast --profile sepolia call --contract-address CONTRACT-ADDRESS-AFTER-DEPLOY --function FUNCTION-NAME
+#NOTE
+#when you call a contract function using sncast call, it's making a static call without a proper caller address, which appears as address 0x0 to the contract
+#So therefore
+#sncast --profile sepolia invoke --contract-address CONTRACT-ADDRESS-AFTER-DEPLOY --function FUNCTION-NAME
+# OR .
+# sncast --profile sepolia --account ACCOUNT-NAME call --contract-address CONTRACT-ADDRESS --function FUNCTION-NAME
+#use invoke for state chaging functions
+## sncast --profile sepolia --account ACCOUNT-NAME invoke --contract-address CONTRACT-ADDRESS --function FUNCTION-NAME --calldata VALUE-TO-ADD
