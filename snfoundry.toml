@@ -10,5 +10,27 @@
 # block-explorer = "StarkScan"                             # Block explorer service used to display links to transaction details
 # show-explorer-links = true                               # Print links pointing to pages with transaction details in the chosen block explorer
 [sncast.sepolia]
-url = "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_8/Zoz3mZqyB4jFN_gts-ZNOueLEaOXs5WL"
+url = "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_7/Zoz3mZqyB4jFN_gts-ZNOueLEaOXs5WL"
 account = "sepolia"
+
+#[sncast.sepolia]
+#url = "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_8/Zoz3mZqyB4jFN_gts-ZNOueLEaOXs5WL"
+#account = "sepolia"
+
+#creating a starknet account for deployment 
+#sncast --profile sepolia account create --name count-deploy-account 
+
+#TO get account info
+#sncast --profile sepolia account list
+
+#to deploy the account. //ensure to fund the created account first use: https://starknet-faucet.vercel.app/
+#sncast --profile sepolia account deploy --name count-deploy-account 
+
+#here is the transaction_hash after deployment 
+#0x02da01031dec891abb9c96824f99d7a5588d7f83cc27efc741a37c59b7abf654
+
+#now you can check the account balance after deployment 
+#for Eth balance:
+#sncast --profile sepolia call --contract-address 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 --function balanceOf --calldata YOUR_ACTUAL_ADDRESS
+#for Strk balance:
+#sncast --profile sepolia call --contract-address 0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d --function balanceOf --calldata YOUR_ACCOUNT_ADDRESS
